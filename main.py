@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 import random
 import re
 
@@ -6,6 +7,15 @@ app = FastAPI(
     title="Bhagavad Gita Quotes API",
     description="Get random Bhagavad Gita quotes for motivation",
     version="1.0.0"
+)
+
+# Enable CORS for all origins
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=False,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 with open("bhagavad_gita_quotes.txt", "r", encoding="utf-8") as file:
