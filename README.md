@@ -1,23 +1,28 @@
 # Bhagavad Gita Quotes API
 
-A simple FastAPI API that returns a random Bhagavad Gita quote.
+A simple FastAPI API that serves random Bhagavad Gita quotes for motivation, wisdom, and daily inspiration.
 
-## Run Locally
+## Base URL
 
-```bash
-pip install -r requirements.txt
-uvicorn main:app --reload
+```text
+https://geeta-quotes-api-d35f6cf2ee12.herokuapp.com/
 ```
 
-## Endpoint
+## Available Endpoints
 
-### Get Random Quote
+### Get Random Bhagavad Gita Quote
 
 ```http
 GET /api/v1/quotes/random
 ```
 
-### Response
+#### Example Request
+
+```text
+https://geeta-quotes-api-d35f6cf2ee12.herokuapp.com/api/v1/quotes/random
+```
+
+#### Example Response
 
 ```json
 {
@@ -28,18 +33,40 @@ GET /api/v1/quotes/random
 }
 ```
 
-## API Docs
+## API Documentation
 
 ```text
-http://localhost:8000/docs
+https://geeta-quotes-api-d35f6cf2ee12.herokuapp.com/docs
+```
+
+## Run Locally
+
+```bash
+pip install -r requirements.txt
+uvicorn main:app --reload
 ```
 
 ## Tech Stack
 
-- FastAPI
-- Python
-- Uvicorn
+* FastAPI
+* Python
+* Uvicorn
+
+## Future Updates
+
+The API currently provides a single endpoint for random Bhagavad Gita quotes.
+
+Planned additions:
+
+* Quote by ID
+* Daily Quote Endpoint
+* Quote Categories
+* Search Quotes
+* Hindi Translations
+* Verse References
+* Rate Limiting
+* API Versioning
 
 ## License
 
-MIT
+This project is licensed under the MIT License. See the LICENSE file for details.
