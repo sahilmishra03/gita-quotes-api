@@ -331,6 +331,8 @@
             <div class="nav-title">Endpoints</div>
             <a href="#endpoint-root" class="nav-link"><i class="ti ti-home"></i> / Root</a>
             <a href="#endpoint-random" class="nav-link"><i class="ti ti-dice-5"></i> /quotes/random</a>
+            <a href="#endpoint-serial" class="nav-link"><i class="ti ti-list-numbers"></i> /quotes/{id}</a>
+            <a href="#endpoint-languages" class="nav-link"><i class="ti ti-language"></i> /languages</a>
         </div>
         
         <div class="nav-group" style="margin-top: auto; padding-top: 2rem;">
@@ -435,15 +437,46 @@
                     <span class="endpoint-url">/api/v1/quotes/random</span>
                 </div>
                 
+                <h3 style="margin-top: 2rem;">Query Parameters</h3>
+                <table class="status-table" style="margin-bottom: 2rem;">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>lang</code> <span style="font-size: 0.75rem; color: #888;">(optional)</span></td>
+                            <td>String</td>
+                            <td>The language of the quote. Supported values: <code>en</code> (English), <code>hi</code> (Hindi), <code>sa</code> (Sanskrit).</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
                 <h3>Response Format</h3>
-                <p>Returns a JSON object containing the randomly selected quote text.</p>
+                <p>If no <code>lang</code> parameter is provided, the API returns a simple JSON object for backward compatibility:</p>
                 <div class="code-block">
                     <div class="code-header">
-                        <span class="code-lang">JSON Response</span>
+                        <span class="code-lang">JSON Response (Default)</span>
                         <button class="copy-btn" onclick="copyCode(this)" title="Copy Code"><i class="ti ti-copy"></i></button>
                     </div>
                     <pre>{
   <span class="key">"quote"</span>: <span class="string">"You have the right to work, but never to the fruit of work."</span>
+}</pre>
+                </div>
+
+                <p style="margin-top: 2rem;">If the <code>lang</code> parameter is used (e.g., <code>?lang=hi</code>), the API returns a structured response:</p>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-lang">JSON Response (Multi-Language)</span>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy Code"><i class="ti ti-copy"></i></button>
+                    </div>
+                    <pre>{
+  <span class="key">"success"</span>: <span class="string">true</span>,
+  <span class="key">"language"</span>: <span class="string">"Hindi"</span>,
+  <span class="key">"quote"</span>: <span class="string">"तुम्हारा अधिकार केवल कर्म करने में है..."</span>
 }</pre>
                 </div>
                 
@@ -482,6 +515,95 @@ print(data[<span class="string">"quote"</span>])</pre>
                     <pre>curl -X GET <span class="string">"https://geeta-quotes-api-d35f6cf2ee12.herokuapp.com/api/v1/quotes/random"</span></pre>
                 </div>
 
+            </div>
+        </section>
+
+        <section id="endpoint-serial">
+            <h2>Serial Quote Endpoint</h2>
+            <p>Fetches a specific verse from the Bhagavad Gita using its serial number (1 to 101). This is perfect when you need to load a specific quote in a selected language.</p>
+            
+            <div class="endpoint-card">
+                <div class="endpoint-header">
+                    <span class="badge badge-get">GET</span>
+                    <span class="endpoint-url">/api/v1/quotes/{id}</span>
+                </div>
+                
+                <h3 style="margin-top: 2rem;">Path Parameters</h3>
+                <table class="status-table" style="margin-bottom: 2rem;">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>id</code></td>
+                            <td>Integer</td>
+                            <td>The serial number of the quote (between 1 and 101).</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 style="margin-top: 2rem;">Query Parameters</h3>
+                <table class="status-table" style="margin-bottom: 2rem;">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>lang</code> <span style="font-size: 0.75rem; color: #888;">(optional)</span></td>
+                            <td>String</td>
+                            <td>The language of the quote. Supported values: <code>en</code> (English), <code>hi</code> (Hindi), <code>sa</code> (Sanskrit). Defaults to <code>en</code>.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>Response Format</h3>
+                <p>The API returns a structured response containing the selected quote:</p>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-lang">JSON Response</span>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy Code"><i class="ti ti-copy"></i></button>
+                    </div>
+                    <pre>{
+  <span class="key">"success"</span>: <span class="string">true</span>,
+  <span class="key">"language"</span>: <span class="string">"English"</span>,
+  <span class="key">"serial"</span>: 5,
+  <span class="key">"quote"</span>: <span class="string">"I am death, which overcomes all, and the source of all beings still to be born."</span>
+}</pre>
+                </div>
+            </div>
+        </section>
+
+        <section id="endpoint-languages">
+            <h2>Languages Endpoint</h2>
+            <p>Fetches a list of all currently supported languages and their corresponding language codes.</p>
+            
+            <div class="endpoint-card">
+                <div class="endpoint-header">
+                    <span class="badge badge-get">GET</span>
+                    <span class="endpoint-url">/api/v1/languages</span>
+                </div>
+                
+                <h3>Response Format</h3>
+                <p>Returns a simple JSON object containing arrays of supported languages and codes:</p>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-lang">JSON Response</span>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy Code"><i class="ti ti-copy"></i></button>
+                    </div>
+                    <pre>{
+  <span class="key">"success"</span>: <span class="string">true</span>,
+  <span class="key">"languages"</span>: [<span class="string">"English"</span>, <span class="string">"Hindi"</span>, <span class="string">"Sanskrit"</span>],
+  <span class="key">"supported_codes"</span>: [<span class="string">"en"</span>, <span class="string">"hi"</span>, <span class="string">"sa"</span>]
+}</pre>
+                </div>
             </div>
         </section>
         

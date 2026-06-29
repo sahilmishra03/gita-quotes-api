@@ -1,6 +1,6 @@
 # gitaquotes API
 
-A simple FastAPI API that serves random Bhagavad Gita quotes for motivation, wisdom, and daily inspiration.
+A production-ready, free REST API delivering timeless wisdom and verified verses from the Bhagavad Gita for your applications. Features multi-language support (English, Hindi, Sanskrit) and requires no authentication.
 
 ## Base URL
 
@@ -10,34 +10,99 @@ https://geeta-quotes-api-d35f6cf2ee12.herokuapp.com/
 
 ## Available Endpoints
 
-### Get Random Bhagavad Gita Quote
+### 1. Get Random Quote
+
+Fetches a randomly selected verse.
 
 ```http
 GET /api/v1/quotes/random
 ```
+**Query Parameters (Optional):**
+- `lang`: Specify the language of the quote. Supported values: `en` (English), `hi` (Hindi), `sa` (Sanskrit).
 
 #### Example Request
-
 ```text
-https://geeta-quotes-api-d35f6cf2ee12.herokuapp.com/api/v1/quotes/random
+https://geeta-quotes-api-d35f6cf2ee12.herokuapp.com/api/v1/quotes/random?lang=hi
 ```
 
 #### Example Response
-
 ```json
 {
   "success": true,
-  "data": {
-    "quote": "You have the right to work, but never to the fruit of work."
-  }
+  "language": "Hindi",
+  "quote": "तुम्हारा अधिकार केवल कर्म करने में है..."
+}
+```
+
+---
+
+### 2. Get Quote by Serial (ID)
+
+Fetches a specific verse using its serial number (1 to 101).
+
+```http
+GET /api/v1/quotes/{id}
+```
+**Path Parameters:**
+- `id`: The serial number of the quote (1 - 101).
+
+**Query Parameters (Optional):**
+- `lang`: Specify the language (`en`, `hi`, `sa`). Defaults to `en`.
+
+#### Example Request
+```text
+https://geeta-quotes-api-d35f6cf2ee12.herokuapp.com/api/v1/quotes/5?lang=sa
+```
+
+#### Example Response
+```json
+{
+  "success": true,
+  "language": "Sanskrit",
+  "serial": 5,
+  "quote": "अहं मृत्युः सर्वाभिभूतः अद्यापि जायमानानां सर्वभूतानां प्रभवः।"
+}
+```
+
+---
+
+### 3. Get Available Languages
+
+Returns a list of all currently supported languages and their codes.
+
+```http
+GET /api/v1/languages
+```
+
+#### Example Request
+```text
+https://geeta-quotes-api-d35f6cf2ee12.herokuapp.com/api/v1/languages
+```
+
+#### Example Response
+```json
+{
+  "success": true,
+  "languages": [
+    "English",
+    "Hindi",
+    "Sanskrit"
+  ],
+  "supported_codes": [
+    "en",
+    "hi",
+    "sa"
+  ]
 }
 ```
 
 ## API Documentation
 
+For the full interactive documentation, visit:
 ```text
 https://geeta-quotes-api-d35f6cf2ee12.herokuapp.com/docs
 ```
+*(Or view the beautifully styled custom documentation at `/website/docs.html`)*
 
 ## Run Locally
 
@@ -45,26 +110,19 @@ https://geeta-quotes-api-d35f6cf2ee12.herokuapp.com/docs
 pip install -r requirements.txt
 uvicorn main:app --reload
 ```
+Then visit `http://127.0.0.1:8000` in your browser.
 
 ## Tech Stack
 
-* FastAPI
-* Python
-* Uvicorn
+* **Backend**: FastAPI, Python, Uvicorn
+* **Frontend UI**: HTML, Vanilla CSS (Glassmorphism), Vanilla JavaScript
 
 ## Future Updates
 
-The API currently provides a single endpoint for random Bhagavad Gita quotes.
-
-Planned additions:
-
-* Quote by ID
 * Daily Quote Endpoint
 * Quote Categories
 * Search Quotes
-* Hindi Translations
 * Verse References
-* Rate Limiting
 * API Versioning
 
 ## License

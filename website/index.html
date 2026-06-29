@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>gitaquotes API</title>
+    <title>Gita Quotes API</title>
     <meta name="description"
         content="A production-ready, free REST API delivering timeless wisdom and verified verses from the Bhagavad Gita for your applications.">
     <meta name="keywords" content="gitaquotes API, REST API, Quotes API, Hindu API, Open Source API, JSON">
@@ -233,7 +233,6 @@
             border-radius: var(--border-radius-xl);
             padding: clamp(3rem, 6vw, 4rem) clamp(2rem, 5vw, 3.5rem);
             position: relative;
-            overflow: hidden;
             transition: transform 0.4s ease, border-color 0.4s ease;
         }
 
@@ -756,6 +755,102 @@
             background: rgba(212, 175, 55, 0.3);
         }
 
+        /* --- DROPDOWN (Fixed globally and improved minimal UI) --- */
+        .custom-dropdown {
+            position: relative;
+            width: 100%;
+            max-width: 160px;
+            z-index: 10;
+        }
+
+        .dropdown-selected {
+            background: #18181b;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            /* Softer geometric border */
+            color: var(--text-primary);
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            /* Clean, modern radius rather than pill-shape */
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background 0.2s ease, border-color 0.2s ease;
+            user-select: none;
+            box-shadow: none;
+            /* Removed heavy shadow for minimal look */
+        }
+
+        .dropdown-selected:hover {
+            background: #27272a;
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .lang-badge {
+            background: #3f3f46;
+            color: #f8f9fa;
+            font-size: 0.65rem;
+            font-weight: 600;
+            padding: 3px 6px;
+            border-radius: 4px;
+            margin-right: 10px;
+            letter-spacing: 0.5px;
+            vertical-align: middle;
+        }
+
+        .dropdown-options {
+            position: absolute;
+            top: calc(100% + 8px);
+            bottom: auto;
+            left: 0;
+            width: 100%;
+            background: #09090b;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-5px);
+            transition: all 0.2s ease;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            /* Subtle flat shadow */
+        }
+
+        .custom-dropdown.open .dropdown-options {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-option {
+            padding: 0.75rem 1.25rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .dropdown-option:hover {
+            background: #27272a;
+            /* Clean hover state */
+            color: var(--text-primary);
+        }
+
+        .custom-dropdown.open .dropdown-selected i {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-selected i {
+            transition: transform 0.2s ease;
+            color: #a1a1aa;
+            font-size: 1rem;
+        }
+
         /* --- RESPONSIVE MOBILE TWEAKS --- */
         @media (max-width: 968px) {
             .hero-inner {
@@ -823,15 +918,25 @@
             .glass-card {
                 padding: clamp(2rem, 6vw, 3rem) clamp(1.2rem, 5vw, 2rem);
             }
+
+            .top-nav {
+                top: 1rem;
+                right: 1rem;
+            }
+
+            .custom-dropdown {
+                max-width: 100%;
+                /* Allows it to stretch nicely on tiny screens */
+            }
         }
-        
+
         .top-nav {
             position: absolute;
             top: 2rem;
             right: 3rem;
             z-index: 100;
         }
-        
+
         .btn-simple-docs {
             display: inline-flex;
             align-items: center;
@@ -847,17 +952,10 @@
             backdrop-filter: blur(10px);
             transition: all 0.2s ease;
         }
-        
+
         .btn-simple-docs:hover {
             background: rgba(212, 175, 55, 0.2);
             transform: translateY(-2px);
-        }
-
-        @media (max-width: 640px) {
-            .top-nav {
-                top: 1rem;
-                right: 1rem;
-            }
         }
     </style>
 </head>
@@ -891,9 +989,29 @@
 
             <div class="glass-card frosted-glass">
                 <div class="quote-text" id="qtext">Loading cosmic guidance...</div>
-                <button class="quote-btn" id="qbtn">
-                    <i class="ti ti-refresh" id="refresh-icon"></i> Seek New Verse
-                </button>
+
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 2rem;">
+                    <div class="custom-dropdown" id="langDropdown">
+                        <div class="dropdown-selected" id="langSelected">
+                            <span><span class="lang-badge">GB</span> English</span>
+                            <i class="ti ti-chevron-down"></i>
+                        </div>
+                        <div class="dropdown-options" id="langOptions">
+                            <div class="dropdown-option" data-value="en">
+                                <span class="lang-badge">GB</span> English
+                            </div>
+                            <div class="dropdown-option" data-value="hi">
+                                <span class="lang-badge">IN</span> Hindi
+                            </div>
+                            <div class="dropdown-option" data-value="sa">
+                                <span class="lang-badge">SA</span> Sanskrit
+                            </div>
+                        </div>
+                    </div>
+                    <button class="quote-btn" id="qbtn" style="margin-top: 0; width: 100%;">
+                        <i class="ti ti-refresh" id="refresh-icon"></i> Seek New Verse
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -1134,6 +1252,28 @@ data = requests.<span class="function">get</span>(url).<span class="function">js
         const qbtn = document.getElementById('qbtn');
         const refreshIcon = document.getElementById('refresh-icon');
 
+        let currentLang = 'en';
+        const langDropdown = document.getElementById('langDropdown');
+        const langSelected = document.getElementById('langSelected');
+        const langOptions = document.getElementById('langOptions');
+
+        langSelected.addEventListener('click', (e) => {
+            e.stopPropagation();
+            langDropdown.classList.toggle('open');
+        });
+
+        document.addEventListener('click', () => {
+            langDropdown.classList.remove('open');
+        });
+
+        // Fixed logic to ensure spans don't infinitely nest
+        langOptions.querySelectorAll('.dropdown-option').forEach(option => {
+            option.addEventListener('click', () => {
+                currentLang = option.dataset.value;
+                langSelected.innerHTML = `<span>${option.innerHTML.trim()}</span> <i class="ti ti-chevron-down"></i>`;
+            });
+        });
+
         async function fetchQuote() {
             // Smooth fade out and add spinning animation
             qtext.style.opacity = '0';
@@ -1143,10 +1283,12 @@ data = requests.<span class="function">get</span>(url).<span class="function">js
 
             setTimeout(async () => {
                 try {
-                    const r = await fetch('https://geeta-quotes-api-d35f6cf2ee12.herokuapp.com/api/v1/quotes/random');
+                    const r = await fetch(`https://geeta-quotes-api-d35f6cf2ee12.herokuapp.com/api/v1/quotes/random?lang=${currentLang}`);
                     if (!r.ok) throw new Error();
                     const j = await r.json();
-                    qtext.textContent = `"${j.data.quote}"`;
+
+                    const quoteText = j.quote || j.data?.quote || "Failed to load quote.";
+                    qtext.textContent = `"${quoteText}"`;
                 } catch {
                     // Fallback
                     const randomQuote = backupQuotes[Math.floor(Math.random() * backupQuotes.length)];
@@ -1169,7 +1311,7 @@ data = requests.<span class="function">get</span>(url).<span class="function">js
         const audioIcon = document.getElementById('audio-icon');
 
         // It starts muted due to browser policy, so isMusicPlaying visually means "is unmuted"
-        let isMusicPlaying = false; 
+        let isMusicPlaying = false;
 
         function toggleAudio() {
             if (isMusicPlaying) {
@@ -1179,7 +1321,7 @@ data = requests.<span class="function">get</span>(url).<span class="function">js
             } else {
                 bgMusic.muted = false;
                 // Ensure it's actually playing (in case autoplay completely failed)
-                bgMusic.play().catch(()=>{}); 
+                bgMusic.play().catch(() => { });
                 audioIcon.className = 'ti ti-volume';
                 isMusicPlaying = true;
             }
