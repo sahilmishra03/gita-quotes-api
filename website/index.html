@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Bhagavad Gita Quotes API</title>
+    <title>gitaquotes API</title>
     <meta name="description"
         content="A production-ready, free REST API delivering timeless wisdom and verified verses from the Bhagavad Gita for your applications.">
-    <meta name="keywords" content="Bhagavad Gita API, REST API, Quotes API, Hindu API, Open Source API, JSON">
+    <meta name="keywords" content="gitaquotes API, REST API, Quotes API, Hindu API, Open Source API, JSON">
     <meta name="author" content="Sahil Mishra">
 
-    <meta property="og:title" content="Bhagavad Gita Quotes API">
+    <meta property="og:title" content="gitaquotes API">
     <meta property="og:description"
         content="Free, open-source REST API for Bhagavad Gita verses. No authentication required.">
     <meta property="og:type" content="website">
@@ -729,6 +729,33 @@
             animation: heartbeat 1.5s infinite;
         }
 
+        /* --- AUDIO TOGGLE --- */
+        .audio-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            color: var(--accent-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .audio-toggle:hover {
+            transform: scale(1.1);
+            background: rgba(212, 175, 55, 0.3);
+        }
+
         /* --- RESPONSIVE MOBILE TWEAKS --- */
         @media (max-width: 968px) {
             .hero-inner {
@@ -797,17 +824,57 @@
                 padding: clamp(2rem, 6vw, 3rem) clamp(1.2rem, 5vw, 2rem);
             }
         }
+        
+        .top-nav {
+            position: absolute;
+            top: 2rem;
+            right: 3rem;
+            z-index: 100;
+        }
+        
+        .btn-simple-docs {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 8px 18px;
+            border-radius: 20px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            backdrop-filter: blur(10px);
+            transition: all 0.2s ease;
+        }
+        
+        .btn-simple-docs:hover {
+            background: rgba(212, 175, 55, 0.2);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 640px) {
+            .top-nav {
+                top: 1rem;
+                right: 1rem;
+            }
+        }
     </style>
 </head>
 
 <body>
+    <div class="top-nav">
+        <a href="docs.html" class="btn-simple-docs frosted-glass">
+            <i class="ti ti-book-2"></i> Docs
+        </a>
+    </div>
 
     <div class="hero-wrapper">
         <div class="hero-overlay"></div>
         <div class="hero-inner">
             <div class="hero-text-content">
                 <div class="hero-badges-wrapper">
-                    <div class="hero-badge frosted-glass"><i class="ti ti-om"></i> Bhagavad Gita API</div>
+                    <div class="hero-badge frosted-glass"><i class="ti ti-om"></i> gitaquotes API</div>
                     <div class="status-badge"><span class="pulse-dot"></span> API Operational</div>
                 </div>
 
@@ -1006,6 +1073,14 @@ data = requests.<span class="function">get</span>(url).<span class="function">js
 
     <div id="toast"><i class="ti ti-circle-check" style="margin-right: 8px;"></i>Copied to clipboard!</div>
 
+    <!-- Background Music -->
+    <audio id="bg-music" loop autoplay muted>
+        <source src="bg-music.mp3" type="audio/mpeg">
+    </audio>
+    <button class="audio-toggle" id="audio-toggle" title="Toggle Music">
+        <i class="ti ti-volume-off" id="audio-icon"></i>
+    </button>
+
     <script>
         // Trigger Toast Notification
         function showToast() {
@@ -1088,8 +1163,35 @@ data = requests.<span class="function">get</span>(url).<span class="function">js
 
         qbtn.addEventListener('click', fetchQuote);
 
-        // Initial load
-        window.addEventListener('DOMContentLoaded', fetchQuote);
+        // Audio Logic
+        const bgMusic = document.getElementById('bg-music');
+        const audioToggle = document.getElementById('audio-toggle');
+        const audioIcon = document.getElementById('audio-icon');
+
+        // It starts muted due to browser policy, so isMusicPlaying visually means "is unmuted"
+        let isMusicPlaying = false; 
+
+        function toggleAudio() {
+            if (isMusicPlaying) {
+                bgMusic.muted = true;
+                audioIcon.className = 'ti ti-volume-off';
+                isMusicPlaying = false;
+            } else {
+                bgMusic.muted = false;
+                // Ensure it's actually playing (in case autoplay completely failed)
+                bgMusic.play().catch(()=>{}); 
+                audioIcon.className = 'ti ti-volume';
+                isMusicPlaying = true;
+            }
+        }
+
+        audioToggle.addEventListener('click', toggleAudio);
+
+        window.addEventListener('DOMContentLoaded', () => {
+            fetchQuote();
+            // Start icon in volume-off state since audio is muted
+            audioIcon.className = 'ti ti-volume-off';
+        });
     </script>
 </body>
 

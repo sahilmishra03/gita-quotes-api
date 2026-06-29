@@ -1,4 +1,4 @@
-# Bhagavad Gita Quotes API
+# gitaquotes API
 
 A simple FastAPI API that serves random Bhagavad Gita quotes for motivation, wisdom, and daily inspiration.
 

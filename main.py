@@ -4,7 +4,7 @@ import random
 import re
 
 app = FastAPI(
-    title="Bhagavad Gita Quotes API",
+    title="gitaquotes API",
     description="Get random Bhagavad Gita quotes for motivation",
     version="1.0.0"
 )
@@ -29,7 +29,7 @@ if not quotes:
 @app.get("/")
 async def root():
     return {
-        "message": "Bhagavad Gita Quotes API",
+        "message": "gitaquotes API",
         "endpoint": "/api/v1/quotes/random"
     }
 
