@@ -51,7 +51,7 @@
             height: 100vh;
             overflow-y: auto;
             padding: 2.5rem 1.5rem;
-            z-index: 100;
+            z-index: 999;
         }
         
         .main-content {
@@ -284,22 +284,48 @@
         
         /* Responsive */
         @media (max-width: 968px) {
+            body {
+                flex-direction: column;
+            }
             .sidebar {
                 transform: translateX(-100%);
-                transition: transform 0.3s ease;
+                transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: none;
             }
             .sidebar.open {
                 transform: translateX(0);
+                box-shadow: 5px 0 25px rgba(0, 0, 0, 0.6);
             }
             .main-content {
                 margin-left: 0;
                 padding: 2rem 1.5rem;
-                width: 100vw;
+                width: 100%;
             }
             .mobile-header {
                 display: flex;
             }
             #toast { left: 50%; }
+            .status-table {
+                display: block;
+                overflow-x: auto;
+            }
+            .status-table th, .status-table td {
+                white-space: nowrap;
+            }
+        }
+        @media (max-width: 576px) {
+            .main-content {
+                padding: 1.5rem 1rem;
+            }
+            .endpoint-card {
+                padding: 1.2rem;
+            }
+            .endpoint-header {
+                padding: 0.8rem 1rem;
+            }
+            pre {
+                padding: 1.2rem;
+            }
         }
     </style>
 </head>
@@ -634,6 +660,26 @@ print(data[<span class="string">"quote"</span>])</pre>
                     link.classList.add('active');
                 }
             });
+        });
+
+        // Close sidebar on mobile when clicking a link
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 968) {
+                    document.getElementById('sidebar').classList.remove('open');
+                }
+            });
+        });
+
+        // Close sidebar when clicking outside of it on mobile
+        document.addEventListener('click', (e) => {
+            const sidebar = document.getElementById('sidebar');
+            const menuBtn = document.querySelector('.menu-btn');
+            if (window.innerWidth <= 968 && sidebar.classList.contains('open')) {
+                if (!sidebar.contains(e.target) && !menuBtn.contains(e.target)) {
+                    sidebar.classList.remove('open');
+                }
+            }
         });
 
         // Toast functionality
