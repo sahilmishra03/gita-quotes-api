@@ -5,7 +5,7 @@ A production-ready, free REST API delivering timeless wisdom and verified verses
 ## Base URL
 
 ```text
-https://geeta-quotes-api-d35f6cf2ee12.herokuapp.com/
+https://gita-quotes-api.onrender.com/
 ```
 
 ## Available Endpoints
@@ -22,7 +22,7 @@ GET /api/v1/quotes/random
 
 #### Example Request
 ```text
-https://geeta-quotes-api-d35f6cf2ee12.herokuapp.com/api/v1/quotes/random?lang=hi
+https://gita-quotes-api.onrender.com/api/v1/quotes/random?lang=hi
 ```
 
 #### Example Response
@@ -51,7 +51,7 @@ GET /api/v1/quotes/{id}
 
 #### Example Request
 ```text
-https://geeta-quotes-api-d35f6cf2ee12.herokuapp.com/api/v1/quotes/5?lang=sa
+https://gita-quotes-api.onrender.com/api/v1/quotes/5?lang=sa
 ```
 
 #### Example Response
@@ -76,7 +76,7 @@ GET /api/v1/languages
 
 #### Example Request
 ```text
-https://geeta-quotes-api-d35f6cf2ee12.herokuapp.com/api/v1/languages
+https://gita-quotes-api.onrender.com/api/v1/languages
 ```
 
 #### Example Response
@@ -100,7 +100,7 @@ https://geeta-quotes-api-d35f6cf2ee12.herokuapp.com/api/v1/languages
 
 For the full interactive documentation, visit:
 ```text
-https://geeta-quotes-api-d35f6cf2ee12.herokuapp.com/docs
+https://gita-quotes-api.onrender.com/docs
 ```
 *(Or view the beautifully styled custom documentation at `/website/docs.html`)*
 

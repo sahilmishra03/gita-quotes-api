@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Documentation - gitaquotes API</title>
     <meta name="description" content="Complete documentation for the Bhagavad Gita Quotes REST API.">
-    
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🙏</text></svg>">
+
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🙏</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
-    
+
     <style>
         :root {
             --bg-base: #050505;
@@ -29,8 +33,16 @@
             --sidebar-width: 280px;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             background-color: var(--bg-base);
             color: var(--text-primary);
@@ -41,7 +53,7 @@
             min-height: 100vh;
             overflow-x: hidden;
         }
-        
+
         /* Layout */
         .sidebar {
             width: var(--sidebar-width);
@@ -53,14 +65,14 @@
             padding: 2.5rem 1.5rem;
             z-index: 999;
         }
-        
+
         .main-content {
             flex: 1;
             margin-left: var(--sidebar-width);
             padding: 4rem 5%;
             max-width: 1100px;
         }
-        
+
         /* Sidebar Components */
         .brand {
             font-family: 'Cinzel', serif;
@@ -73,8 +85,11 @@
             margin-bottom: 3rem;
             font-weight: 700;
         }
-        
-        .nav-group { margin-bottom: 2.5rem; }
+
+        .nav-group {
+            margin-bottom: 2.5rem;
+        }
+
         .nav-title {
             font-size: 0.8rem;
             text-transform: uppercase;
@@ -84,6 +99,7 @@
             font-weight: 600;
             padding-left: 0.5rem;
         }
+
         .nav-link {
             display: flex;
             align-items: center;
@@ -96,22 +112,53 @@
             font-size: 0.95rem;
             margin-bottom: 4px;
         }
-        .nav-link:hover, .nav-link.active {
+
+        .nav-link:hover,
+        .nav-link.active {
             background: rgba(255, 255, 255, 0.05);
             color: var(--text-primary);
         }
+
         .nav-link.active {
             color: var(--accent-gold);
             background: rgba(212, 175, 55, 0.1);
         }
-        .nav-link i { font-size: 1.15rem; }
-        
+
+        .nav-link i {
+            font-size: 1.15rem;
+        }
+
         /* Main Content Typography */
-        h1 { font-family: 'Cinzel', serif; font-size: clamp(2.2rem, 5vw, 3rem); color: #fff; margin-bottom: 1rem; }
-        h2 { font-family: 'Cinzel', serif; font-size: clamp(1.8rem, 4vw, 2.2rem); color: var(--accent-gold); margin: 4rem 0 1.5rem; padding-bottom: 0.8rem; border-bottom: 1px solid var(--border-subtle); }
-        h3 { font-size: 1.25rem; color: #fff; margin: 2rem 0 1rem; font-weight: 600; }
-        p { color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 1.05rem; line-height: 1.7; }
-        
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.2rem, 5vw, 3rem);
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.8rem, 4vw, 2.2rem);
+            color: var(--accent-gold);
+            margin: 4rem 0 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            color: #fff;
+            margin: 2rem 0 1rem;
+            font-weight: 600;
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
         /* Badges */
         .badge {
             padding: 0.4rem 0.8rem;
@@ -122,9 +169,19 @@
             display: inline-flex;
             align-items: center;
         }
-        .badge-get { background-color: rgba(74, 222, 128, 0.15); color: #4ade80; border: 1px solid rgba(74, 222, 128, 0.2); }
-        .badge-url { background-color: rgba(212, 175, 55, 0.15); color: var(--accent-gold); border: 1px solid rgba(212, 175, 55, 0.2); }
-        
+
+        .badge-get {
+            background-color: rgba(74, 222, 128, 0.15);
+            color: #4ade80;
+            border: 1px solid rgba(74, 222, 128, 0.2);
+        }
+
+        .badge-url {
+            background-color: rgba(212, 175, 55, 0.15);
+            color: var(--accent-gold);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
         /* Endpoints */
         .endpoint-card {
             background: var(--surface-dark);
@@ -134,6 +191,7 @@
             margin-bottom: 2.5rem;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
+
         .endpoint-header {
             display: flex;
             align-items: center;
@@ -145,13 +203,14 @@
             border: 1px solid var(--border-subtle);
             flex-wrap: wrap;
         }
+
         .endpoint-url {
             font-family: 'Fira Code', monospace;
             font-size: 0.95rem;
             color: var(--text-primary);
             word-break: break-all;
         }
-        
+
         /* Code Blocks */
         .code-block {
             background-color: #000;
@@ -159,8 +218,9 @@
             border-radius: var(--border-radius-md);
             overflow: hidden;
             margin: 1.5rem 0;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
+
         .code-header {
             background-color: var(--surface-light);
             padding: 0.8rem 1.2rem;
@@ -169,11 +229,13 @@
             justify-content: space-between;
             border-bottom: 1px solid var(--border-subtle);
         }
+
         .code-lang {
             font-family: 'Fira Code', monospace;
             font-size: 0.85rem;
             color: #888;
         }
+
         .copy-btn {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--border-subtle);
@@ -186,7 +248,12 @@
             border-radius: 6px;
             padding: 6px;
         }
-        .copy-btn:hover { background: rgba(255, 255, 255, 0.1); color: #fff; }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
         pre {
             padding: 1.5rem;
             font-family: 'Fira Code', monospace;
@@ -196,9 +263,15 @@
             overflow-x: auto;
             line-height: 1.6;
         }
-        .key { color: #7dd3fc; }
-        .string { color: #fca5a5; }
-        
+
+        .key {
+            color: #7dd3fc;
+        }
+
+        .string {
+            color: #fca5a5;
+        }
+
         /* Tables */
         .status-table {
             width: 100%;
@@ -206,11 +279,14 @@
             border-spacing: 0;
             margin-top: 0;
         }
-        .status-table th, .status-table td {
+
+        .status-table th,
+        .status-table td {
             padding: 1.2rem;
             text-align: left;
             border-bottom: 1px solid var(--border-subtle);
         }
+
         .status-table th {
             color: var(--text-primary);
             font-weight: 600;
@@ -219,14 +295,17 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
+
         .status-table tr:last-child td {
             border-bottom: none;
         }
+
         .status-table td {
             color: var(--text-secondary);
             font-size: 0.95rem;
             vertical-align: top;
         }
+
         .status-table td code {
             font-family: 'Fira Code', monospace;
             background: rgba(255, 255, 255, 0.05);
@@ -256,12 +335,13 @@
             transition: opacity 0.3s, bottom 0.3s;
             box-shadow: 0 10px 30px rgba(74, 222, 128, 0.3);
         }
+
         #toast.show {
             visibility: visible;
             opacity: 1;
             bottom: 50px;
         }
-        
+
         /* Mobile Navbar */
         .mobile-header {
             display: none;
@@ -274,6 +354,7 @@
             top: 0;
             z-index: 101;
         }
+
         .menu-btn {
             background: none;
             border: none;
@@ -281,58 +362,74 @@
             font-size: 1.5rem;
             cursor: pointer;
         }
-        
+
         /* Responsive */
         @media (max-width: 968px) {
             body {
                 flex-direction: column;
             }
+
             .sidebar {
                 transform: translateX(-100%);
                 transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
                 box-shadow: none;
             }
+
             .sidebar.open {
                 transform: translateX(0);
                 box-shadow: 5px 0 25px rgba(0, 0, 0, 0.6);
             }
+
             .main-content {
                 margin-left: 0;
                 padding: 2rem 1.5rem;
                 width: 100%;
             }
+
             .mobile-header {
                 display: flex;
             }
-            #toast { left: 50%; }
+
+            #toast {
+                left: 50%;
+            }
+
             .status-table {
                 display: block;
                 overflow-x: auto;
             }
-            .status-table th, .status-table td {
+
+            .status-table th,
+            .status-table td {
                 white-space: nowrap;
             }
         }
+
         @media (max-width: 576px) {
             .main-content {
                 padding: 1.5rem 1rem;
             }
+
             .endpoint-card {
                 padding: 1.2rem;
             }
+
             .endpoint-header {
                 padding: 0.8rem 1rem;
             }
+
             pre {
                 padding: 1.2rem;
             }
         }
     </style>
 </head>
+
 <body>
 
     <div class="mobile-header">
-        <a href="index.html" class="brand" style="margin-bottom: 0; font-size: 1.2rem;"><i class="ti ti-om"></i> gitaquotes API</a>
+        <a href="index.html" class="brand" style="margin-bottom: 0; font-size: 1.2rem;"><i class="ti ti-om"></i>
+            gitaquotes API</a>
         <button class="menu-btn" onclick="document.getElementById('sidebar').classList.toggle('open')">
             <i class="ti ti-menu-2"></i>
         </button>
@@ -340,7 +437,7 @@
 
     <aside class="sidebar" id="sidebar">
         <a href="index.html" class="brand"><i class="ti ti-om"></i> gitaquotes API</a>
-        
+
         <div class="nav-group">
             <div class="nav-title">Getting Started</div>
             <a href="#introduction" class="nav-link active"><i class="ti ti-info-circle"></i> Introduction</a>
@@ -352,7 +449,7 @@
             <div class="nav-title">Reference</div>
             <a href="#status-codes" class="nav-link"><i class="ti ti-server"></i> Status Codes</a>
         </div>
-        
+
         <div class="nav-group">
             <div class="nav-title">Endpoints</div>
             <a href="#endpoint-root" class="nav-link"><i class="ti ti-home"></i> / Root</a>
@@ -360,38 +457,46 @@
             <a href="#endpoint-serial" class="nav-link"><i class="ti ti-list-numbers"></i> /quotes/{id}</a>
             <a href="#endpoint-languages" class="nav-link"><i class="ti ti-language"></i> /languages</a>
         </div>
-        
+
         <div class="nav-group" style="margin-top: auto; padding-top: 2rem;">
-            <a href="index.html" class="nav-link" style="color: var(--accent-gold);"><i class="ti ti-arrow-left"></i> Back to Home</a>
+            <a href="index.html" class="nav-link" style="color: var(--accent-gold);"><i class="ti ti-arrow-left"></i>
+                Back to Home</a>
         </div>
     </aside>
 
     <main class="main-content">
         <section id="introduction">
             <h1>API Documentation</h1>
-            <p>Welcome to the gitaquotes API documentation. Our RESTful API provides developers with immediate access to a curated collection of English translations from the Bhagavad Gita.</p>
-            <p>The API is designed to be extremely simple to integrate, returning fast JSON responses without the hassle of API keys or complex setups.</p>
-            
+            <p>Welcome to the gitaquotes API documentation. Our RESTful API provides developers with immediate access to
+                a curated collection of English translations from the Bhagavad Gita.</p>
+            <p>The API is designed to be extremely simple to integrate, returning fast JSON responses without the hassle
+                of API keys or complex setups.</p>
+
             <div class="endpoint-card" style="margin-top: 2rem;">
                 <h3 style="margin-top: 0;">Base URL</h3>
                 <div class="endpoint-header" style="margin-bottom: 0;">
                     <span class="badge badge-url">BASE</span>
-                    <span class="endpoint-url" id="base-url-text">https://geeta-quotes-api-d35f6cf2ee12.herokuapp.com</span>
+                    <span class="endpoint-url"
+                        id="base-url-text">https://gita-quotes-api.onrender.com</span>
                 </div>
             </div>
         </section>
 
         <section id="authentication">
             <h2>Authentication</h2>
-            <p>The gitaquotes API is entirely open and free. There is <strong>no authentication required</strong>. You do not need to register an account, pass an API key in your headers, or manage tokens. Just make standard HTTP GET requests to the endpoints.</p>
+            <p>The gitaquotes API is entirely open and free. There is <strong>no authentication required</strong>. You
+                do not need to register an account, pass an API key in your headers, or manage tokens. Just make
+                standard HTTP GET requests to the endpoints.</p>
         </section>
 
         <section id="rate-limits">
             <h2>Rate Limits</h2>
-            <p>To ensure fair usage and maintain server stability for everyone, the API enforces a standard rate limit based on IP addresses.</p>
+            <p>To ensure fair usage and maintain server stability for everyone, the API enforces a standard rate limit
+                based on IP addresses.</p>
             <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem; color: var(--text-secondary);">
                 <li style="margin-bottom: 0.5rem;"><strong>Limit:</strong> 60 requests per minute per IP address.</li>
-                <li><strong>Penalty:</strong> If you exceed this limit, the API will return a <code>429 Too Many Requests</code> HTTP status code.</li>
+                <li><strong>Penalty:</strong> If you exceed this limit, the API will return a
+                    <code>429 Too Many Requests</code> HTTP status code.</li>
             </ul>
         </section>
 
@@ -430,20 +535,22 @@
 
         <section id="endpoint-root">
             <h2>Root Endpoint</h2>
-            <p>A simple health-check endpoint that verifies the API is online and returns the primary endpoint path. Useful for pinging the service to ensure it is awake.</p>
-            
+            <p>A simple health-check endpoint that verifies the API is online and returns the primary endpoint path.
+                Useful for pinging the service to ensure it is awake.</p>
+
             <div class="endpoint-card">
                 <div class="endpoint-header">
                     <span class="badge badge-get">GET</span>
                     <span class="endpoint-url">/</span>
                 </div>
-                
+
                 <h3>Response Format</h3>
                 <p>Returns a simple JSON object confirming the API status.</p>
                 <div class="code-block">
                     <div class="code-header">
                         <span class="code-lang">JSON Response</span>
-                        <button class="copy-btn" onclick="copyCode(this)" title="Copy Code"><i class="ti ti-copy"></i></button>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy Code"><i
+                                class="ti ti-copy"></i></button>
                     </div>
                     <pre>{
   <span class="key">"message"</span>: <span class="string">"gitaquotes API"</span>,
@@ -455,14 +562,15 @@
 
         <section id="endpoint-random">
             <h2>Random Quote Endpoint</h2>
-            <p>Fetches a single, randomly selected verse from the Bhagavad Gita. This is the primary endpoint for integration into widgets, daily quote apps, or bots.</p>
-            
+            <p>Fetches a single, randomly selected verse from the Bhagavad Gita. This is the primary endpoint for
+                integration into widgets, daily quote apps, or bots.</p>
+
             <div class="endpoint-card">
                 <div class="endpoint-header">
                     <span class="badge badge-get">GET</span>
                     <span class="endpoint-url">/api/v1/quotes/random</span>
                 </div>
-                
+
                 <h3 style="margin-top: 2rem;">Query Parameters</h3>
                 <table class="status-table" style="margin-bottom: 2rem;">
                     <thead>
@@ -476,28 +584,33 @@
                         <tr>
                             <td><code>lang</code> <span style="font-size: 0.75rem; color: #888;">(optional)</span></td>
                             <td>String</td>
-                            <td>The language of the quote. Supported values: <code>en</code> (English), <code>hi</code> (Hindi), <code>sa</code> (Sanskrit).</td>
+                            <td>The language of the quote. Supported values: <code>en</code> (English), <code>hi</code>
+                                (Hindi), <code>sa</code> (Sanskrit).</td>
                         </tr>
                     </tbody>
                 </table>
-                
+
                 <h3>Response Format</h3>
-                <p>If no <code>lang</code> parameter is provided, the API returns a simple JSON object for backward compatibility:</p>
+                <p>If no <code>lang</code> parameter is provided, the API returns a simple JSON object for backward
+                    compatibility:</p>
                 <div class="code-block">
                     <div class="code-header">
                         <span class="code-lang">JSON Response (Default)</span>
-                        <button class="copy-btn" onclick="copyCode(this)" title="Copy Code"><i class="ti ti-copy"></i></button>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy Code"><i
+                                class="ti ti-copy"></i></button>
                     </div>
                     <pre>{
   <span class="key">"quote"</span>: <span class="string">"You have the right to work, but never to the fruit of work."</span>
 }</pre>
                 </div>
 
-                <p style="margin-top: 2rem;">If the <code>lang</code> parameter is used (e.g., <code>?lang=hi</code>), the API returns a structured response:</p>
+                <p style="margin-top: 2rem;">If the <code>lang</code> parameter is used (e.g., <code>?lang=hi</code>),
+                    the API returns a structured response:</p>
                 <div class="code-block">
                     <div class="code-header">
                         <span class="code-lang">JSON Response (Multi-Language)</span>
-                        <button class="copy-btn" onclick="copyCode(this)" title="Copy Code"><i class="ti ti-copy"></i></button>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy Code"><i
+                                class="ti ti-copy"></i></button>
                     </div>
                     <pre>{
   <span class="key">"success"</span>: <span class="string">true</span>,
@@ -505,15 +618,16 @@
   <span class="key">"quote"</span>: <span class="string">"तुम्हारा अधिकार केवल कर्म करने में है..."</span>
 }</pre>
                 </div>
-                
+
                 <h3 style="margin-top: 3rem;">Integration Examples</h3>
-                
+
                 <div class="code-block">
                     <div class="code-header">
                         <span class="code-lang">JavaScript (Fetch)</span>
-                        <button class="copy-btn" onclick="copyCode(this)" title="Copy Code"><i class="ti ti-copy"></i></button>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy Code"><i
+                                class="ti ti-copy"></i></button>
                     </div>
-                    <pre>fetch(<span class="string">'https://geeta-quotes-api-d35f6cf2ee12.herokuapp.com/api/v1/quotes/random'</span>)
+                    <pre>fetch(<span class="string">'https://gita-quotes-api.onrender.com/api/v1/quotes/random'</span>)
   .then(response => response.json())
   .then(data => console.log(data.quote))
   .catch(error => console.error(<span class="string">'Error:'</span>, error));</pre>
@@ -522,23 +636,25 @@
                 <div class="code-block">
                     <div class="code-header">
                         <span class="code-lang">Python (Requests)</span>
-                        <button class="copy-btn" onclick="copyCode(this)" title="Copy Code"><i class="ti ti-copy"></i></button>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy Code"><i
+                                class="ti ti-copy"></i></button>
                     </div>
                     <pre><span class="key">import</span> requests
 
-url = <span class="string">"https://geeta-quotes-api-d35f6cf2ee12.herokuapp.com/api/v1/quotes/random"</span>
+url = <span class="string">"https://gita-quotes-api.onrender.com/api/v1/quotes/random"</span>
 response = requests.get(url)
 data = response.json()
 
 print(data[<span class="string">"quote"</span>])</pre>
                 </div>
-                
+
                 <div class="code-block">
                     <div class="code-header">
                         <span class="code-lang">cURL</span>
-                        <button class="copy-btn" onclick="copyCode(this)" title="Copy Code"><i class="ti ti-copy"></i></button>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy Code"><i
+                                class="ti ti-copy"></i></button>
                     </div>
-                    <pre>curl -X GET <span class="string">"https://geeta-quotes-api-d35f6cf2ee12.herokuapp.com/api/v1/quotes/random"</span></pre>
+                    <pre>curl -X GET <span class="string">"https://gita-quotes-api.onrender.com/api/v1/quotes/random"</span></pre>
                 </div>
 
             </div>
@@ -546,14 +662,15 @@ print(data[<span class="string">"quote"</span>])</pre>
 
         <section id="endpoint-serial">
             <h2>Serial Quote Endpoint</h2>
-            <p>Fetches a specific verse from the Bhagavad Gita using its serial number (1 to 101). This is perfect when you need to load a specific quote in a selected language.</p>
-            
+            <p>Fetches a specific verse from the Bhagavad Gita using its serial number (1 to 101). This is perfect when
+                you need to load a specific quote in a selected language.</p>
+
             <div class="endpoint-card">
                 <div class="endpoint-header">
                     <span class="badge badge-get">GET</span>
                     <span class="endpoint-url">/api/v1/quotes/{id}</span>
                 </div>
-                
+
                 <h3 style="margin-top: 2rem;">Path Parameters</h3>
                 <table class="status-table" style="margin-bottom: 2rem;">
                     <thead>
@@ -585,17 +702,19 @@ print(data[<span class="string">"quote"</span>])</pre>
                         <tr>
                             <td><code>lang</code> <span style="font-size: 0.75rem; color: #888;">(optional)</span></td>
                             <td>String</td>
-                            <td>The language of the quote. Supported values: <code>en</code> (English), <code>hi</code> (Hindi), <code>sa</code> (Sanskrit). Defaults to <code>en</code>.</td>
+                            <td>The language of the quote. Supported values: <code>en</code> (English), <code>hi</code>
+                                (Hindi), <code>sa</code> (Sanskrit). Defaults to <code>en</code>.</td>
                         </tr>
                     </tbody>
                 </table>
-                
+
                 <h3>Response Format</h3>
                 <p>The API returns a structured response containing the selected quote:</p>
                 <div class="code-block">
                     <div class="code-header">
                         <span class="code-lang">JSON Response</span>
-                        <button class="copy-btn" onclick="copyCode(this)" title="Copy Code"><i class="ti ti-copy"></i></button>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy Code"><i
+                                class="ti ti-copy"></i></button>
                     </div>
                     <pre>{
   <span class="key">"success"</span>: <span class="string">true</span>,
@@ -610,19 +729,20 @@ print(data[<span class="string">"quote"</span>])</pre>
         <section id="endpoint-languages">
             <h2>Languages Endpoint</h2>
             <p>Fetches a list of all currently supported languages and their corresponding language codes.</p>
-            
+
             <div class="endpoint-card">
                 <div class="endpoint-header">
                     <span class="badge badge-get">GET</span>
                     <span class="endpoint-url">/api/v1/languages</span>
                 </div>
-                
+
                 <h3>Response Format</h3>
                 <p>Returns a simple JSON object containing arrays of supported languages and codes:</p>
                 <div class="code-block">
                     <div class="code-header">
                         <span class="code-lang">JSON Response</span>
-                        <button class="copy-btn" onclick="copyCode(this)" title="Copy Code"><i class="ti ti-copy"></i></button>
+                        <button class="copy-btn" onclick="copyCode(this)" title="Copy Code"><i
+                                class="ti ti-copy"></i></button>
                     </div>
                     <pre>{
   <span class="key">"success"</span>: <span class="string">true</span>,
@@ -632,8 +752,9 @@ print(data[<span class="string">"quote"</span>])</pre>
                 </div>
             </div>
         </section>
-        
-        <footer style="margin-top: 5rem; padding-top: 2rem; border-top: 1px solid var(--border-subtle); text-align: center; color: var(--text-secondary); font-size: 0.9rem;">
+
+        <footer
+            style="margin-top: 5rem; padding-top: 2rem; border-top: 1px solid var(--border-subtle); text-align: center; color: var(--text-secondary); font-size: 0.9rem;">
             <p>&copy; 2026 gitaquotes API.</p>
         </footer>
     </main>
@@ -644,7 +765,7 @@ print(data[<span class="string">"quote"</span>])</pre>
         // Scrollspy for sidebar
         const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('.sidebar .nav-link[href^="#"]');
-        
+
         window.addEventListener('scroll', () => {
             let current = '';
             sections.forEach(section => {
@@ -653,7 +774,7 @@ print(data[<span class="string">"quote"</span>])</pre>
                     current = section.getAttribute('id');
                 }
             });
-            
+
             navLinks.forEach(link => {
                 link.classList.remove('active');
                 if (link.getAttribute('href') === `#${current}`) {
@@ -706,4 +827,5 @@ print(data[<span class="string">"quote"</span>])</pre>
         }
     </script>
 </body>
+
 </html>
