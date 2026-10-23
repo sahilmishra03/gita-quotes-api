@@ -4,11 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentation - gitaquotes API</title>
+    <title>Documentation: Gita Quotes API</title>
     <meta name="description" content="Complete documentation for the Bhagavad Gita Quotes REST API.">
 
-    <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🙏</text></svg>">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/brand/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="assets/brand/favicon-48x48.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/brand/apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#050505">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -92,9 +97,22 @@
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             margin-bottom: 3rem;
             font-weight: 700;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .brand:hover {
+            opacity: 0.95;
+            transform: translateX(2px);
+        }
+
+        .brand-logo-img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.4));
         }
 
         .nav-group {
@@ -439,15 +457,20 @@
 <body>
 
     <div class="mobile-header">
-        <a href="index.html" class="brand" style="margin-bottom: 0; font-size: 1.2rem;"><i class="ti ti-om"></i>
-            gitaquotes API</a>
+        <a href="index.html" class="brand" style="margin-bottom: 0; font-size: 1.2rem;">
+            <img src="assets/brand/logo-mark.png" alt="gitaquotes API" class="brand-logo-img">
+            <span>gitaquotes API</span>
+        </a>
         <button class="menu-btn" onclick="document.getElementById('sidebar').classList.toggle('open')">
             <i class="ti ti-menu-2"></i>
         </button>
     </div>
 
     <aside class="sidebar" id="sidebar">
-        <a href="index.html" class="brand"><i class="ti ti-om"></i> gitaquotes API</a>
+        <a href="index.html" class="brand">
+            <img src="assets/brand/logo-mark.png" alt="gitaquotes API" class="brand-logo-img">
+            <span>gitaquotes API</span>
+        </a>
 
         <div class="nav-group">
             <div class="nav-title">Getting Started</div>
@@ -487,8 +510,7 @@
                 <h3 style="margin-top: 0;">Base URL</h3>
                 <div class="endpoint-header" style="margin-bottom: 0;">
                     <span class="badge badge-url">BASE</span>
-                    <span class="endpoint-url"
-                        id="base-url-text">https://gita-quotes-api.onrender.com</span>
+                    <span class="endpoint-url" id="base-url-text">https://gita-quotes-api.onrender.com</span>
                 </div>
             </div>
         </section>
@@ -507,7 +529,8 @@
             <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem; color: var(--text-secondary);">
                 <li style="margin-bottom: 0.5rem;"><strong>Limit:</strong> 60 requests per minute per IP address.</li>
                 <li><strong>Penalty:</strong> If you exceed this limit, the API will return a
-                    <code>429 Too Many Requests</code> HTTP status code.</li>
+                    <code>429 Too Many Requests</code> HTTP status code.
+                </li>
             </ul>
         </section>
 

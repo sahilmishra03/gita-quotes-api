@@ -16,14 +16,20 @@
         content="Free, open-source REST API for Bhagavad Gita verses. No authentication required.">
     <meta property="og:type" content="website">
 
-    <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🙏</text></svg>">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/brand/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="assets/brand/favicon-48x48.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/brand/apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#050505">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 
     <script>
         // =========================================================================
@@ -81,7 +87,7 @@
             justify-content: center;
             background: url('IMG_1477.jpg') center center / cover no-repeat fixed;
             background-color: #0a0a0a;
-            padding: 2rem 1rem;
+            padding: 7rem 1.5rem 3.5rem;
         }
 
         .hero-overlay {
@@ -113,6 +119,7 @@
             grid-template-columns: 1.1fr 0.9fr;
             gap: clamp(3rem, 6vw, 5rem);
             align-items: center;
+            margin-top: 1.5rem;
             animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
@@ -518,6 +525,10 @@
             color: #61afef;
         }
 
+        pre span.number {
+            color: #f59e0b;
+        }
+
         .code-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -576,6 +587,131 @@
             opacity: 1;
         }
 
+        .bento-card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .bento-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 20px;
+            letter-spacing: 0.3px;
+        }
+
+        .bento-badge-live {
+            background: rgba(74, 222, 128, 0.12);
+            color: #4ade80;
+            border: 1px solid rgba(74, 222, 128, 0.3);
+        }
+
+        .bento-badge-dev {
+            background: rgba(212, 175, 55, 0.12);
+            color: var(--accent-gold);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .bento-badge-plan {
+            background: rgba(192, 132, 252, 0.12);
+            color: #c084fc;
+            border: 1px solid rgba(192, 132, 252, 0.3);
+        }
+
+        .endpoint-tabs, .quickstart-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .endpoint-tab, .quickstart-tab {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: inherit;
+        }
+
+        .endpoint-tab:hover, .quickstart-tab:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-primary);
+        }
+
+        .endpoint-tab.active, .quickstart-tab.active {
+            background: rgba(212, 175, 55, 0.15);
+            border-color: rgba(212, 175, 55, 0.4);
+            color: var(--accent-gold);
+        }
+
+        .github-stats {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .stat-pill {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-subtle);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .stat-pill i {
+            color: var(--accent-gold);
+        }
+
+        .quote-source {
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            color: var(--accent-gold);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-top: -1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.85;
+            position: relative;
+            z-index: 2;
+            transition: opacity 0.4s ease;
+        }
+
+        .audio-toggle.playing {
+            box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.6), 0 4px 15px rgba(0, 0, 0, 0.4);
+            animation: audioPulse 2s infinite;
+        }
+
+        @keyframes audioPulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.6);
+            }
+            70% {
+                box-shadow: 0 0 0 14px rgba(212, 175, 55, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+            }
+        }
+
         .bento-icon-wrapper {
             background: rgba(212, 175, 55, 0.1);
             width: 48px;
@@ -587,6 +723,12 @@
             color: var(--accent-gold);
             font-size: 24px;
             border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .bento-card:hover .bento-icon-wrapper {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.25);
         }
 
         .bento-card h4 {
@@ -929,8 +1071,18 @@
             }
 
             .top-nav {
-                top: 1rem;
+                top: 1.25rem;
+                left: 1rem;
                 right: 1rem;
+            }
+
+            .nav-brand-logo {
+                width: 32px;
+                height: 32px;
+            }
+
+            .nav-brand-text {
+                font-size: 1.15rem;
             }
 
             .custom-dropdown {
@@ -941,9 +1093,49 @@
 
         .top-nav {
             position: absolute;
-            top: 2rem;
-            right: 3rem;
+            top: 1.5rem;
+            left: clamp(1.5rem, 5vw, 4rem);
+            right: clamp(1.5rem, 5vw, 4rem);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             z-index: 100;
+        }
+
+        .nav-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #ffffff;
+            font-family: 'Cinzel', serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .nav-brand:hover {
+            transform: translateY(-1px);
+            opacity: 0.95;
+        }
+
+        .nav-brand-logo {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 10px rgba(212, 175, 55, 0.45));
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .nav-brand:hover .nav-brand-logo {
+            transform: scale(1.08) rotate(3deg);
+        }
+
+        .nav-brand-text {
+            background: linear-gradient(90deg, #ffffff 40%, var(--accent-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .btn-simple-docs {
@@ -970,11 +1162,20 @@
 </head>
 
 <body>
-    <div class="top-nav">
-        <a href="docs.html" class="btn-simple-docs frosted-glass">
-            <i class="ti ti-book-2"></i> Docs
+    <header class="top-nav">
+        <a href="index.html" class="nav-brand">
+            <img src="assets/brand/logo-mark.png" alt="GitaQuotes API Logo" class="nav-brand-logo">
+            <span class="nav-brand-text">GitaQuotes</span>
         </a>
-    </div>
+        <div class="nav-right" style="display: flex; gap: 10px; align-items: center;">
+            <a href="https://github.com/sahilmishra03/gita-quotes-api" target="_blank" rel="noopener noreferrer" class="btn-simple-docs frosted-glass" style="color: var(--text-primary); border-color: var(--border-subtle);">
+                <i class="ti ti-brand-github"></i> GitHub
+            </a>
+            <a href="docs.html" class="btn-simple-docs frosted-glass">
+                <i class="ti ti-book-2"></i> Docs
+            </a>
+        </div>
+    </header>
 
     <div class="hero-wrapper">
         <div class="hero-overlay"></div>
@@ -998,8 +1199,9 @@
 
             <div class="glass-card frosted-glass">
                 <div class="quote-text" id="qtext">Loading cosmic guidance...</div>
+                <div class="quote-source" id="qsource">— Bhagavad Gita</div>
 
-                <div style="display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 2rem;">
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 1rem;">
                     <div class="custom-dropdown" id="langDropdown">
                         <div class="dropdown-selected" id="langSelected">
                             <span><span class="lang-badge">GB</span> English</span>
@@ -1042,20 +1244,26 @@
                 </button>
             </div>
 
-            <h3 style="color: var(--text-primary); margin-bottom: 0.8rem; margin-top: 2rem; font-size: 1.05rem;">Random
-                Quote Endpoint</h3>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 2rem; margin-bottom: 1rem; flex-wrap: wrap; gap: 10px;">
+                <h3 style="color: var(--text-primary); font-size: 1.05rem; margin: 0;">Interactive Endpoint Explorer</h3>
+                <div class="endpoint-tabs" id="endpointTabs" style="margin-bottom: 0;">
+                    <button class="endpoint-tab active" onclick="switchEndpoint('random', this)"><i class="ti ti-dice-5"></i> Random Quote</button>
+                    <button class="endpoint-tab" onclick="switchEndpoint('id', this)"><i class="ti ti-list-numbers"></i> Quote by ID</button>
+                    <button class="endpoint-tab" onclick="switchEndpoint('languages', this)"><i class="ti ti-language"></i> Languages</button>
+                    <button class="endpoint-tab" onclick="switchEndpoint('health', this)"><i class="ti ti-heart-rate-monitor"></i> API Status</button>
+                </div>
+            </div>
+
             <div class="endpoint-row">
                 <div class="endpoint-left">
-                    <span class="badge badge-get">GET</span>
-                    <span class="url-text"
-                        id="randomEndpoint">https://gita-quotes-api.onrender.com/api/v1/quotes/random</span>
+                    <span class="badge badge-get" id="endpointMethod">GET</span>
+                    <span class="url-text" id="endpointUrl">https://gita-quotes-api.onrender.com/api/v1/quotes/random</span>
                 </div>
-                <button class="copy-btn" onclick="copyToClipboard('randomEndpoint', this)" title="Copy to clipboard">
+                <button class="copy-btn" onclick="copyToClipboard('endpointUrl', this)" title="Copy to clipboard">
                     <i class="ti ti-copy"></i>
                 </button>
             </div>
-            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem;">Returns a single,
-                randomly selected verse containing practical guidance on karma, dharma, duty, and inner clarity.</p>
+            <p id="endpointDesc" style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem;">Returns a single, randomly selected verse containing practical guidance on karma, dharma, duty, and inner clarity.</p>
 
             <h3 style="color: var(--text-primary); margin-bottom: 0.8rem; margin-top: 2rem; font-size: 1.05rem;">
                 Response Payload</h3>
@@ -1064,12 +1272,12 @@
                     <div class="terminal-dot dot-red"></div>
                     <div class="terminal-dot dot-yellow"></div>
                     <div class="terminal-dot dot-green"></div>
-                    <div class="terminal-title">response.json</div>
+                    <div class="terminal-title" id="terminalTitle">response.json</div>
                     <button class="copy-btn copy-code-btn" onclick="copyCode(this)" title="Copy code">
                         <i class="ti ti-copy"></i>
                     </button>
                 </div>
-                <pre>{
+                <pre id="responseJson">{
   <span class="key">"success"</span>: <span class="boolean">true</span>,
   <span class="key">"data"</span>: {
     <span class="key">"quote"</span>: <span class="string">"You have the right to work, but never to the fruit of work."</span>
@@ -1081,7 +1289,28 @@
         <h2 class="section-title" style="margin-top: 4rem;"><i class="ti ti-code"></i> Quick Start Examples</h2>
         <p class="section-sub">Drop these snippets directly into your project to fetch a quote.</p>
 
-        <div class="code-grid">
+        <div class="quickstart-tabs" id="quickstartTabs">
+            <button class="quickstart-tab active" onclick="switchQuickstart('curl', this)"><i class="ti ti-terminal-2"></i> cURL</button>
+            <button class="quickstart-tab" onclick="switchQuickstart('js', this)"><i class="ti ti-brand-javascript"></i> JavaScript</button>
+            <button class="quickstart-tab" onclick="switchQuickstart('py', this)"><i class="ti ti-brand-python"></i> Python</button>
+        </div>
+
+        <div id="quickstart-curl" class="quickstart-panel">
+            <div class="terminal-window" style="margin-bottom: 0;">
+                <div class="terminal-header">
+                    <div class="terminal-dot dot-red"></div>
+                    <div class="terminal-dot dot-yellow"></div>
+                    <div class="terminal-dot dot-green"></div>
+                    <div class="terminal-title"><span class="badge badge-lang">BASH</span> curl command</div>
+                    <button class="copy-btn copy-code-btn" onclick="copyCode(this)" title="Copy code">
+                        <i class="ti ti-copy"></i>
+                    </button>
+                </div>
+                <pre><span class="function">curl</span> -X GET <span class="string">"https://gita-quotes-api.onrender.com/api/v1/quotes/random"</span></pre>
+            </div>
+        </div>
+
+        <div id="quickstart-js" class="quickstart-panel" style="display: none;">
             <div class="terminal-window" style="margin-bottom: 0;">
                 <div class="terminal-header">
                     <div class="terminal-dot dot-red"></div>
@@ -1098,7 +1327,9 @@
   .<span class="function">then</span>(res => res.<span class="function">json</span>())
   .<span class="function">then</span>(data => console.<span class="function">log</span>(data.data.quote));</pre>
             </div>
+        </div>
 
+        <div id="quickstart-py" class="quickstart-panel" style="display: none;">
             <div class="terminal-window" style="margin-bottom: 0;">
                 <div class="terminal-header">
                     <div class="terminal-dot dot-red"></div>
@@ -1140,36 +1371,54 @@ data = requests.<span class="function">get</span>(url).<span class="function">js
         </div>
 
         <h2 class="section-title" style="margin-top: 5rem;"><i class="ti ti-map-2"></i> Roadmap & Features</h2>
-        <p class="section-sub">Planned framework upgrades and endpoint additions for upcoming v2 releases.</p>
+        <p class="section-sub">Planned framework upgrades and endpoint additions for upcoming releases.</p>
 
         <div class="bento-grid">
             <div class="bento-card frosted-glass">
-                <div class="bento-icon-wrapper"><i class="ti ti-id"></i></div>
+                <div class="bento-card-top">
+                    <div class="bento-icon-wrapper"><i class="ti ti-id"></i></div>
+                    <span class="bento-badge bento-badge-live"><i class="ti ti-circle-check"></i> Available</span>
+                </div>
                 <h4>Quote by ID</h4>
                 <p>Fetch specific verses using their unique identifiers for precise referencing.</p>
             </div>
             <div class="bento-card frosted-glass">
-                <div class="bento-icon-wrapper"><i class="ti ti-calendar-event"></i></div>
+                <div class="bento-card-top">
+                    <div class="bento-icon-wrapper"><i class="ti ti-calendar-event"></i></div>
+                    <span class="bento-badge bento-badge-plan"><i class="ti ti-sparkles"></i> v2.1 Planned</span>
+                </div>
                 <h4>Daily Quote</h4>
                 <p>A synchronized daily verse that remains consistent globally for 24 hours.</p>
             </div>
             <div class="bento-card frosted-glass">
-                <div class="bento-icon-wrapper"><i class="ti ti-category"></i></div>
+                <div class="bento-card-top">
+                    <div class="bento-icon-wrapper"><i class="ti ti-category"></i></div>
+                    <span class="bento-badge bento-badge-dev"><i class="ti ti-loader"></i> In Development</span>
+                </div>
                 <h4>Quote Categories</h4>
                 <p>Filter verses by themes such as Karma, Dharma, Meditation, and Peace.</p>
             </div>
             <div class="bento-card frosted-glass">
-                <div class="bento-icon-wrapper"><i class="ti ti-search"></i></div>
+                <div class="bento-card-top">
+                    <div class="bento-icon-wrapper"><i class="ti ti-search"></i></div>
+                    <span class="bento-badge bento-badge-dev"><i class="ti ti-loader"></i> In Development</span>
+                </div>
                 <h4>Search Functionality</h4>
                 <p>Query the API with keywords to find relevant verses and teachings instantly.</p>
             </div>
             <div class="bento-card frosted-glass">
-                <div class="bento-icon-wrapper"><i class="ti ti-language"></i></div>
+                <div class="bento-card-top">
+                    <div class="bento-icon-wrapper"><i class="ti ti-language"></i></div>
+                    <span class="bento-badge bento-badge-live"><i class="ti ti-circle-check"></i> Available</span>
+                </div>
                 <h4>Hindi & Sanskrit Support</h4>
                 <p>Full localization offering original Sanskrit slokas and Hindi translations.</p>
             </div>
             <div class="bento-card frosted-glass">
-                <div class="bento-icon-wrapper"><i class="ti ti-book"></i></div>
+                <div class="bento-card-top">
+                    <div class="bento-icon-wrapper"><i class="ti ti-book"></i></div>
+                    <span class="bento-badge bento-badge-plan"><i class="ti ti-sparkles"></i> v2.1 Planned</span>
+                </div>
                 <h4>Chapter & Verse Mapping</h4>
                 <p>Get exact reference metadata (e.g., Chapter 2, Verse 47) attached to each payload.</p>
             </div>
@@ -1183,6 +1432,12 @@ data = requests.<span class="function">get</span>(url).<span class="function">js
             <p style="color: var(--text-secondary); font-size: 1.05rem; max-width: 650px; margin: 0 auto;">Want to host
                 it yourself? The full source code is completely free and open. Fork the repository, modify the
                 endpoints, and deploy your own instance locally or on your servers.</p>
+            <div class="github-stats">
+                <span class="stat-pill"><i class="ti ti-bolt"></i> Fast, Async Python</span>
+                <span class="stat-pill"><i class="ti ti-shield-check"></i> No API Keys</span>
+                <span class="stat-pill"><i class="ti ti-certificate"></i> MIT License</span>
+                <span class="stat-pill"><i class="ti ti-heart"></i> Free Forever</span>
+            </div>
             <a href="https://github.com/sahilmishra03/gita-quotes-api" target="_blank" rel="noopener noreferrer"
                 class="btn-github">
                 <i class="ti ti-brand-github-filled" style="font-size: 1.2rem;"></i> View Source on GitHub
@@ -1246,6 +1501,70 @@ data = requests.<span class="function">get</span>(url).<span class="function">js
                     icon.style.color = '';
                 }, 2000);
             });
+        }
+
+        // Switch Quickstart Examples Tabs (cURL, JS, Python)
+        function switchQuickstart(lang, btnElement) {
+            document.querySelectorAll('#quickstartTabs .quickstart-tab').forEach(t => t.classList.remove('active'));
+            btnElement.classList.add('active');
+
+            const panels = {
+                'curl': document.getElementById('quickstart-curl'),
+                'js': document.getElementById('quickstart-js'),
+                'py': document.getElementById('quickstart-py')
+            };
+
+            Object.keys(panels).forEach(key => {
+                if (panels[key]) {
+                    panels[key].style.display = (key === lang) ? 'block' : 'none';
+                }
+            });
+        }
+
+        // Switch Endpoint Explorer Tabs
+        const endpointData = {
+            'random': {
+                method: 'GET',
+                url: 'https://gita-quotes-api.onrender.com/api/v1/quotes/random',
+                desc: 'Returns a single, randomly selected verse containing practical guidance on karma, dharma, duty, and inner clarity.',
+                title: 'response.json',
+                json: `{\n  <span class="key">"success"</span>: <span class="boolean">true</span>,\n  <span class="key">"data"</span>: {\n    <span class="key">"quote"</span>: <span class="string">"You have the right to work, but never to the fruit of work."</span>\n  }\n}`
+            },
+            'id': {
+                method: 'GET',
+                url: 'https://gita-quotes-api.onrender.com/api/v1/quotes/1',
+                desc: 'Fetches a specific verse by its unique identifier (e.g., 1 to 100) with complete metadata.',
+                title: 'quote-1.json',
+                json: `{\n  <span class="key">"success"</span>: <span class="boolean">true</span>,\n  <span class="key">"data"</span>: {\n    <span class="key">"id"</span>: <span class="number">1</span>,\n    <span class="key">"quote"</span>: <span class="string">"You have the right to work, but never to the fruit of work."</span>,\n    <span class="key">"chapter"</span>: <span class="number">2</span>,\n    <span class="key">"verse"</span>: <span class="number">47</span>\n  }\n}`
+            },
+            'languages': {
+                method: 'GET',
+                url: 'https://gita-quotes-api.onrender.com/api/v1/languages',
+                desc: 'Lists all available language translations supported by the API (English, Hindi, Sanskrit).',
+                title: 'languages.json',
+                json: `{\n  <span class="key">"success"</span>: <span class="boolean">true</span>,\n  <span class="key">"languages"</span>: [\n    { <span class="key">"code"</span>: <span class="string">"en"</span>, <span class="key">"name"</span>: <span class="string">"English"</span> },\n    { <span class="key">"code"</span>: <span class="string">"hi"</span>, <span class="key">"name"</span>: <span class="string">"Hindi"</span> },\n    { <span class="key">"code"</span>: <span class="string">"sa"</span>, <span class="key">"name"</span>: <span class="string">"Sanskrit"</span> }\n  ]\n}`
+            },
+            'health': {
+                method: 'GET',
+                url: 'https://gita-quotes-api.onrender.com/health',
+                desc: 'Live health and uptime check endpoint for service monitoring and DevOps automated status checks.',
+                title: 'health.json',
+                json: `{\n  <span class="key">"status"</span>: <span class="string">"healthy"</span>,\n  <span class="key">"service"</span>: <span class="string">"gita-quotes-api"</span>,\n  <span class="key">"uptime"</span>: <span class="string">"99.98%"</span>,\n  <span class="key">"version"</span>: <span class="string">"1.0.0"</span>\n}`
+            }
+        };
+
+        function switchEndpoint(endpointKey, btnElement) {
+            document.querySelectorAll('#endpointTabs .endpoint-tab').forEach(t => t.classList.remove('active'));
+            btnElement.classList.add('active');
+
+            const data = endpointData[endpointKey];
+            if (!data) return;
+
+            document.getElementById('endpointMethod').textContent = data.method;
+            document.getElementById('endpointUrl').textContent = data.url;
+            document.getElementById('endpointDesc').textContent = data.desc;
+            document.getElementById('terminalTitle').textContent = data.title;
+            document.getElementById('responseJson').innerHTML = data.json;
         }
 
         const backupQuotes = [
@@ -1326,12 +1645,14 @@ data = requests.<span class="function">get</span>(url).<span class="function">js
             if (isMusicPlaying) {
                 bgMusic.muted = true;
                 audioIcon.className = 'ti ti-volume-off';
+                audioToggle.classList.remove('playing');
                 isMusicPlaying = false;
             } else {
                 bgMusic.muted = false;
                 // Ensure it's actually playing (in case autoplay completely failed)
                 bgMusic.play().catch(() => { });
                 audioIcon.className = 'ti ti-volume';
+                audioToggle.classList.add('playing');
                 isMusicPlaying = true;
             }
         }
